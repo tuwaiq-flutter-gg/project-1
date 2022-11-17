@@ -1,7 +1,7 @@
 abstract class User {
-  String name;
-  int age;
-  User(this.name, this.age);
+  String? name;
+  int? age;
+  User({this.name, this.age});
   show_info();
 }
 
