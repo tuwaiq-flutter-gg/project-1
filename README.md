@@ -5,7 +5,7 @@ Delivery Conditions:
 * Build the App using Dart Programming Langauge
 * Upload it to Github
 
-####Mandatory ideas to consider in your code:
+### Mandatory ideas to do in your code:
 1.Import `Dart:io` to take input from the console.
 
 2.Make sure to comment on your code for documentation purposes and readability.
@@ -28,7 +28,7 @@ Delivery Conditions:
 
 11.Use conventions naming for variables, classes, and functions.
 
-####Potential ideas to consider in advancing your code:
+### Potential ideas to consider in advancing your code:
 
 1.Use `Getter and setter` methods to manipulate the data of the class fields.
 
