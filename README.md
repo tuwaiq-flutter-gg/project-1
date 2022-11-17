@@ -29,8 +29,11 @@ Mandatory ideas to consider in your code:
 11.Use conventions naming for variables, classes, and functions.
 
 Potential ideas to consider in advancing your code:
+
 1.Use `Getter and setter` methods to manipulate the data of the class fields.
+
 2.implement inhertaince using `with` keyword.
+
 3.Use `late`, `const` and `final` keywords in your code.
 
 Project Requirements:
