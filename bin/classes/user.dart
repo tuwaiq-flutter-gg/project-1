@@ -8,6 +8,6 @@ abstract class User {
 class student extends User {
   int id;
   show_info() {}
-  student({required this.id, required String name, required int age})
-      
+  student({required this.id, required String name, required int age});
+  
 }
