@@ -29,7 +29,7 @@ List<Book> Books = [
       quantity: 9)
 ];
 int counter = 1;
-
+List cart = [];
 void main() {
   print("Welcom to pur library");
 
@@ -50,8 +50,8 @@ class Book extends Library {
   String? book_title;
   String? author;
   double? price;
-  int quantity;
-  Book({this.book_title, this.author, this.price, this.quantity}) {
+  late int quantity;
+  Book({this.book_title, this.author, this.price, required this.quantity}) {
     this.book_id = counter;
     counter++;
   }
@@ -78,7 +78,7 @@ class Book extends Library {
   @override
   sell() {
     if (quantity > 0) {
-      quantity -= 1;
+      quantity--;
       print("Thank you for your Shopping");
     } else {
       print("Sorry! we are out of stock");
