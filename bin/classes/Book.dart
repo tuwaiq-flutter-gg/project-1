@@ -3,5 +3,14 @@ class Book {
   String titel, author;
   double price;
   int quantity;
-  Book(this.id, this.titel, this.author, this.price, this.quantity) {}
+  Book(
+      {required this.id,
+      required this.titel,
+      required this.author,
+      required this.price,
+      required this.quantity});
+  @override
+  String toString() {
+    return "Id:$id, Title:$titel, Author:$author, Price:$price, Quantity:$quantity";
+  }
 }
