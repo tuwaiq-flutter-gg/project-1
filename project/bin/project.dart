@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 List<Book> Books = [
   Book(
@@ -31,11 +32,13 @@ int counter = 1;
 
 void main() {
   print("Welcom to pur library");
+
+  Books[0].delete(1);
 }
 
 abstract class Library {
   add();
-  delete();
+  delete(int deletedID);
   edit();
   viewInformation();
   search();
@@ -43,11 +46,11 @@ abstract class Library {
 }
 
 class Book extends Library {
-  int? book_id = 0;
+  int book_id = 0;
   String? book_title;
   String? author;
   double? price;
-  int? quantity;
+  int quantity;
   Book({this.book_title, this.author, this.price, this.quantity}) {
     this.book_id = counter;
     counter++;
@@ -57,7 +60,14 @@ class Book extends Library {
   add() {}
 
   @override
-  delete() {}
+  delete(int deletedID) {
+    for (int i = 0; i < Books.length; i++) {
+      int x = Books[i].book_id;
+      if (x == deletedID) {
+        Books.remove(Books[i]);
+      }
+    }
+  }
 
   @override
   edit() {}
@@ -66,7 +76,14 @@ class Book extends Library {
   search() {}
 
   @override
-  sell() {}
+  sell() {
+    if (quantity > 0) {
+      quantity -= 1;
+      print("Thank you for your Shopping");
+    } else {
+      print("Sorry! we are out of stock");
+    }
+  }
 
   @override
   viewInformation() {}
