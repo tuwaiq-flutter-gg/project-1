@@ -57,7 +57,18 @@ class Book extends Library {
   }
 
   @override
-  add() {}
+  add() {
+    print("Enter Book Title");
+    String? title = stdin.readLineSync();
+    print("Enter Book Author");
+    String? author = stdin.readLineSync();
+    print("Enter Book Price");
+    String? price = stdin.readLineSync();
+    print("Enter Book Quantity");
+    int quantity = 0;
+    var x = stdin.readLineSync();
+    quantity = int.parse(x!);
+  }
 
   @override
   delete(int deletedID) {
