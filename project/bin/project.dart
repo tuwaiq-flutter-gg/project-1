@@ -34,10 +34,12 @@ void main() {
   print("Welcom to pur library");
   //add();
   //search();
+  // print(Books.length);
+  // delete();
+  // print(Books.length);
 }
 
 abstract class Library {
-  delete(int deletedID);
   edit();
   viewInformation();
   sell();
@@ -60,15 +62,6 @@ class Book extends Library {
 
   @override
   @override
-  delete(int deletedID) {
-    for (int i = 0; i < Books.length; i++) {
-      int x = Books[i].book_id;
-      if (x == deletedID) {
-        Books.remove(Books[i]);
-      }
-    }
-  }
-
   @override
   edit() {}
 
@@ -184,6 +177,24 @@ search() {
     if (search == 1 || search == 2 || search == 3 || search == 4) {
       look(search);
       searching = false;
+    }
+  }
+}
+
+delete() {
+  bool deleting = true;
+  int deleteID;
+  String deleteMessage = "Enter Book ID for deleting it ";
+  while (deleting) {
+    print(deleteMessage);
+    deleteID = int.parse(stdin.readLineSync()!);
+    for (int i = 0; i < Books.length; i++) {
+      int x = Books[i].book_id;
+      if (x == deleteID) {
+        Books.remove(Books[i]);
+        deleting = false;
+      }
+      deleteMessage = "Re enter a Valid ID";
     }
   }
 }
