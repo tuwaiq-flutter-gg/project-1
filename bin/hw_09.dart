@@ -39,21 +39,7 @@ void main() {
   List<Book> books = [b1, b2, b3, b4, b5];
   bool run = true;
   int op = 1;
-  // addBoks() {
-  //   String? inputOp = stdin.readLineSync();
-  //   int add = 1;
-  //   add = int.parse(inputOp!);
-  //   if (add == 0) {
-  //     print("Please,enter a number");
-  //   } else if (add == 1) {
-  //     print("Enter book information");
-  //     print("Name book ");
-  //     String? namebook = stdin.readLineSync();
-  //     int namebook1 = int.parse(namebook!);
-  //     books.add(Book(
-  //         id: 5, titel: namebook, author: "author", price: 5, quantity: 5));
-  //   }
-
+  
   do {
     menu();
     print("Enter your choice:");
