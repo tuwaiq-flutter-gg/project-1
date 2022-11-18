@@ -1,6 +1,9 @@
-abstract class BookEdit {
-  editTitle(String title);
-  editAuthor(String author);
-  editPrice(double price);
-  editQuantity(int quantity);
+abstract class IBook {
+  int get book_id;
+  late String book_title;
+  late String author;
+  late double price;
+  late int quantity;
+
+  view();
 }
