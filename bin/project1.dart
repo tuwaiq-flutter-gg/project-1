@@ -88,10 +88,8 @@ class Info extends LibraryBook {
         price: 39.9,
         quantity: 9),
   ];
-  //String? editInput1 = stdin.readLineSync();
   @override
   Edit() {
-    //still  working on it
     print("Enter the ID of the book to edit it:");
     int editInput = int.parse(stdin.readLineSync()!);
     print("Enter the new Title:");
