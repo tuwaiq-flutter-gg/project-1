@@ -32,16 +32,14 @@ int counter = 1;
 List cart = [];
 void main() {
   print("Welcom to pur library");
-
-  Books[0].delete(1);
+  //add();
+  //search();
 }
 
 abstract class Library {
-  add();
   delete(int deletedID);
   edit();
   viewInformation();
-  search();
   sell();
 }
 
@@ -51,25 +49,16 @@ class Book extends Library {
   String? author;
   double? price;
   late int quantity;
-  Book({this.book_title, this.author, this.price, required this.quantity}) {
+  Book(
+      {required this.book_title,
+      required this.author,
+      required this.price,
+      required this.quantity}) {
     this.book_id = counter;
     counter++;
   }
 
   @override
-  add() {
-    print("Enter Book Title");
-    String? title = stdin.readLineSync();
-    print("Enter Book Author");
-    String? author = stdin.readLineSync();
-    print("Enter Book Price");
-    String? price = stdin.readLineSync();
-    print("Enter Book Quantity");
-    int quantity = 0;
-    var x = stdin.readLineSync();
-    quantity = int.parse(x!);
-  }
-
   @override
   delete(int deletedID) {
     for (int i = 0; i < Books.length; i++) {
@@ -84,9 +73,6 @@ class Book extends Library {
   edit() {}
 
   @override
-  search() {}
-
-  @override
   sell() {
     if (quantity > 0) {
       quantity--;
@@ -97,5 +83,107 @@ class Book extends Library {
   }
 
   @override
-  viewInformation() {}
+  viewInformation() {
+    print(
+        "The ID is $book_id\tThe Title is $book_title\tThe author $author\tThe price is $price\tThe quantity is $quantity ");
+  }
+}
+
+add() {
+  String? title;
+  String? author;
+  double? price;
+  int quantity = 0;
+  bool adding = true;
+
+  while (adding) {
+    print("Enter Book Title");
+    title = stdin.readLineSync();
+    if (title != "") {
+      adding = false;
+    }
+  }
+  adding = true;
+  while (adding) {
+    print("Enter Book Author");
+    author = stdin.readLineSync()!;
+    if (author != "") {
+      adding = false;
+    }
+  }
+  adding = true;
+  while (adding) {
+    print("Enter Book Price");
+    price = double.parse(stdin.readLineSync()!);
+    if (price > 0) {
+      adding = false;
+    }
+  }
+  adding = true;
+  while (adding) {
+    print("Enter Book Quantity");
+    quantity = int.parse(stdin.readLineSync()!);
+    if (quantity > 0) {
+      adding = false;
+    }
+  }
+  Books.add(Book(
+      book_title: title, author: author, price: price, quantity: quantity));
+}
+
+look(int search) {
+  var booksearch;
+  bool se = true;
+  if (search == 1) {
+    while (se) {
+      print("Enter Book ID");
+      booksearch = int.parse(stdin.readLineSync()!);
+      for (int i = 0; i < Books.length; i++) {
+        var item = Books[i].book_id;
+        if (item == booksearch) {
+          Books[i].viewInformation();
+          se = false;
+        }
+      }
+    }
+  } else if (search == 2) {
+    while (se) {
+      print("Enter Book Title");
+      booksearch = stdin.readLineSync()!;
+      for (int i = 0; i < Books.length; i++) {
+        var item = Books[i].book_title;
+        if (item!.contains(booksearch)) {
+          // if (item == booksearch) for exact Match
+          Books[i].viewInformation();
+          se = false;
+        }
+      }
+    }
+  } else if (search == 3) {
+    while (se) {
+      print("Enter Book Autor");
+      booksearch = stdin.readLineSync()!;
+      for (int i = 0; i < Books.length; i++) {
+        var item = Books[i].author;
+        if (item!.contains(booksearch)) {
+          // // if (item == booksearch) for exact Match
+          Books[i].viewInformation();
+          se = false;
+        }
+      }
+    }
+  }
+}
+
+search() {
+  bool searching = true;
+  int search;
+  while (searching) {
+    print("How do you want to Search\n1 By ID\n2 By Title \n3 By Author");
+    search = int.parse(stdin.readLineSync()!);
+    if (search == 1 || search == 2 || search == 3 || search == 4) {
+      look(search);
+      searching = false;
+    }
+  }
 }
