@@ -1,15 +1,10 @@
 import 'classes/Book.dart';
 import 'classes/user.dart';
-<<<<<<< HEAD
-
-void main(List<String> arguments) {}
-  
-=======
 import 'dart:io';
 
 enum oprations { exit, add, delete, edit, viewInfo }
 
-void main(List<String> arguments) {
+void main() {
   Book b1 = Book(
       id: 1,
       titel: "Start with why",
@@ -42,9 +37,23 @@ void main(List<String> arguments) {
       quantity: 9);
 
   List<Book> books = [b1, b2, b3, b4, b5];
-
   bool run = true;
   int op = 1;
+  // addBoks() {
+  //   String? inputOp = stdin.readLineSync();
+  //   int add = 1;
+  //   add = int.parse(inputOp!);
+  //   if (add == 0) {
+  //     print("Please,enter a number");
+  //   } else if (add == 1) {
+  //     print("Enter book information");
+  //     print("Name book ");
+  //     String? namebook = stdin.readLineSync();
+  //     int namebook1 = int.parse(namebook!);
+  //     books.add(Book(
+  //         id: 5, titel: namebook, author: "author", price: 5, quantity: 5));
+  //   }
+
   do {
     menu();
     print("Enter your choice:");
@@ -59,11 +68,38 @@ void main(List<String> arguments) {
     if (op == oprations.exit.index)
       run = false;
     else if (op == oprations.add.index) {
-      print("add");
+      String? inputOp = stdin.readLineSync();
+      int add = 1;
+      add = int.parse(inputOp!);
+      if (add == 0) {
+        print("Please,enter a number");
+      } else if (add == 1) {
+        print("Please enter the book ID");
+        String? inputOp5 = stdin.readLineSync();
+        int idBook = int.parse(inputOp5!);
+        print("Please enter the title of the book");
+        String? inputOp1 = stdin.readLineSync();
+        print("Please enter the author of the book");
+        String? inputOp2 = stdin.readLineSync();
+        print("Please enter the price of the book");
+        String? inputOp3 = stdin.readLineSync();
+        double priceBook = double.parse(inputOp3!);
+        print("Please enter book quantity");
+        String? inputOp4 = stdin.readLineSync();
+        int quantityBook = int.parse(inputOp4!);
+        books.add(Book(
+            id: idBook,
+            titel: inputOp1!,
+            author: inputOp2!,
+            price: priceBook,
+            quantity: quantityBook));
+      }
+      //addBoks();
     } else if (op == oprations.delete.index) {
       print("delete");
     } else if (op == oprations.edit.index) {
       print("edit");
+      print(books);
     } else if (op == oprations.viewInfo.index) {
       print("edit");
     } else
@@ -86,4 +122,3 @@ void menu() {
   print("== 0) To exit, choose 0\t\t\t\t\t\t\t\t==");
   print("=" * 82);
 }
->>>>>>> c520658183b24758cb823b961d1de57632e84fc5

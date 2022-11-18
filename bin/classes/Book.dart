@@ -1,6 +1,6 @@
 class Book {
-  int id;
-  String titel, author;
+  int  id;
+  String  titel, author;
   double price;
   int quantity;
   Book(
