@@ -1,5 +1,5 @@
-// we used abstract class to organise our project
-//and we override all the variables and function 
+// we used abstract class to organize our project
+//and we override all the variables and function
 //In our project ;
 
 abstract class IBook {
