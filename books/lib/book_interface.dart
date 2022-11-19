@@ -1,3 +1,7 @@
+// we used abstract class to organise our project
+//and we override all the variables and function 
+//In our project ;
+
 abstract class IBook {
   int get book_id;
   late String book_title;

@@ -1,5 +1,6 @@
 import 'package:books/book_interface.dart';
-
+//Here we make Book classs that’s  inherited from IBook(abstract class) 
+//And override on it.
 class Book implements IBook {
   @override
   final int book_id;
@@ -11,7 +12,7 @@ class Book implements IBook {
   double price;
   @override
   int quantity;
-
+// Here is a constructor to initialize the data members of new objects (new Book) when it called.
   Book(
       {required this.book_id,
       required this.book_title,
@@ -19,6 +20,7 @@ class Book implements IBook {
       required this.price,
       required this.quantity});
 
+// by this function we will wiew the book details for the user 
   @override
   view() {
     String printID = book_id.toString().padLeft(3).padRight(5);
