@@ -114,7 +114,6 @@ class Book extends Library {
   viewInformation() {
     print(
         " Book information : \n The ID: \"$book_id\"\tThe Title: \"$book_title\"\tThe author: \"$author\"\tThe price: \"$price\"\tThe quantity: \"$quantity\" ");
-        
   }
 }
 
@@ -170,7 +169,7 @@ delete() {
     print(deleteMessage);
     deleteID = int.parse(stdin.readLineSync()!);
     for (int i = 0; i < Books.length; i++) {
-      int x = Books[i].book_id;
+      int x = Books[i].getID();
       if (x == deleteID) {
         Books.remove(Books[i]);
         deleting = false;
@@ -184,7 +183,7 @@ delete() {
 
 deleteByID(int ID) {
   for (int i = 0; i < Books.length; i++) {
-    int x = Books[i].book_id;
+    int x = Books[i].getID();
     if (x == ID) {
       Books.remove(Books[i]);
       print("The Book has been removed successfully");
@@ -195,10 +194,10 @@ deleteByID(int ID) {
 
 viewLibrary() {
   print("The List in Your Library");
- print("--------------------------------------");
+  print("--------------------------------------");
   for (int i = 0; i < Books.length; i++) {
     print(
-        "Book${Books[i].book_id} : \n The ID: ${Books[i].book_id}\tThe Title: ${Books[i].book_title}\tThe author name: ${Books[i].author}\t The price: ${Books[i].price}\t The quantity: ${Books[i].quantity}");
+        "Book ${i + 1} : \n The ID: ${Books[i].getID()}\tThe Title: ${Books[i].getTitle()}\tThe author name: ${Books[i].getAuthor()}\t The price: ${Books[i].getPrice()}\t The quantity: ${Books[i].getQuantity()}");
   }
   print("--------------------------------------");
 }

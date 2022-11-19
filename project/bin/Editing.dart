@@ -17,8 +17,6 @@ WhatToEdit(int ID) {
     if (editType == 1 || editType == 2 || editType == 3 || editType == 4) {
       editing(editType, ID);
       ed = false;
-      print("you done changes successfully");
-      print("--------------------------------------");
     }
   }
 }
@@ -37,6 +35,8 @@ editing(int typeOFedit, int ID) {
           if (item == ID) {
             Books[i].setTitle(edinting);
             ed = false;
+            print("you done changes successfully");
+            print("--------------------------------------");
           }
         }
       }
@@ -51,6 +51,8 @@ editing(int typeOFedit, int ID) {
           if (item == ID) {
             Books[i].setAuthor(edinting);
             ed = false;
+            print("you done changes successfully");
+            print("--------------------------------------");
           }
         }
       }
@@ -65,6 +67,8 @@ editing(int typeOFedit, int ID) {
           if (item == ID) {
             Books[i].setPrice(edinting);
             ed = false;
+            print("you done changes successfully");
+            print("--------------------------------------");
           }
         }
       }
@@ -79,6 +83,8 @@ editing(int typeOFedit, int ID) {
           if (item == ID) {
             Books[i].setQuantity(edinting);
             ed = false;
+            print("you done changes successfully");
+            print("--------------------------------------");
           }
         }
       }

@@ -16,7 +16,7 @@ RunTheLibrary() {
   bool quit = false;
   bool back = false; // to return back one step
   bool find = false;
-  var theBook;
+  late var theBook;
 
   do {
     print(
@@ -38,8 +38,7 @@ RunTheLibrary() {
               print("--------------------------------------");
               print(
                   "you find the book that you are looking for, what do you want to do?\n1- Edit the book\n2- Buy the book\n3- Delete the book\n4- Return to the main menu");
-                  
-              
+
               String? fundedBook = stdin.readLineSync();
               if (fundedBook == "1") {
                 WhatToEdit(theBook);

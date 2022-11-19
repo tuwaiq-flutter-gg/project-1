@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'Editing.dart';
 import 'Books.dart';
@@ -6,7 +5,6 @@ import 'search.dart';
 import 'Books.dart';
 import 'main.dart';
 import 'main.dart';
-
 
 buying() {
   bool shopping = true;
@@ -79,7 +77,9 @@ viewCart() {
   double total = 0;
   if (cart.length == 0) {
     print("Your cart is empty !");
+    print("--------------------------------------");
   } else {
+    print("--------------------------------------");
     print("Your Shooping Cart has these items:");
     for (int i = 0; i < cart.length; i++) {
       total += cart[i].price!;
@@ -94,10 +94,10 @@ viewCart() {
 Checkout() {
   if (cart.length == 0) {
     print("You didnot add anything to your cart");
+    print("--------------------------------------");
   } else {
     print("Thank you for your Shooping");
     print("--------------------------------------");
     cart.removeRange(0, cart.length);
   }
 }
-
