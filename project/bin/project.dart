@@ -37,6 +37,9 @@ void main() {
   // print(Books.length);
   // delete();
   // print(Books.length);
+  print(cart.length);
+  buying();
+  print(cart.length);
 }
 
 abstract class Library {
@@ -65,14 +68,18 @@ class Book extends Library {
   @override
   edit() {}
 
-  @override
-  sell() {
+  @override // No need for its already implmented in buying function
+  bool sell() {
+    bool sellable = false;
     if (quantity > 0) {
       quantity--;
-      print("Thank you for your Shopping");
+      //print("Thank you for your Shopping");
+      sellable == true;
     } else {
+      sellable = false;
       print("Sorry! we are out of stock");
     }
+    return sellable;
   }
 
   @override
@@ -197,4 +204,51 @@ delete() {
       deleteMessage = "Re enter a Valid ID";
     }
   }
+}
+
+buying() {
+  bool shopping = true;
+  int BookID;
+  int q = 0;
+  String deleteMessage = "Enter Book ID to put it in cart";
+  while (shopping) {
+    print(deleteMessage);
+    BookID = int.parse(stdin.readLineSync()!);
+    for (int i = 0; i < Books.length; i++) {
+      int x = Books[i].book_id;
+      // print(x);
+      if (x == BookID) {
+        if (Books[i].quantity > 0) {
+          //Books[i].sell() did not work tried another way
+          Books[i].quantity -= 1;
+          cart.add(Books[i]);
+          q++;
+          // print(x);
+        } else {
+          print("Sorry! we are out of stock");
+        }
+      }
+    }
+    if (q > 0) {
+      print("enter 0 to finish shopping or anyNumber to choose another Book");
+      BookID = int.parse(stdin.readLineSync()!);
+      if (BookID == 0) {
+        shopping = false;
+      }
+    } else {
+      print("Wrong Book ID");
+    }
+  }
+  viewCart();
+}
+
+viewCart() {
+  print("Your Shooping Cart has these items");
+  double total = 0;
+  for (int i = 0; i < cart.length; i++) {
+    total += cart[i].price!;
+    print(
+        "Book ID ${cart[i].book_id} Book Title ${cart[i].book_title} the price = ${cart[i].price}");
+  }
+  print("Total = $total");
 }
