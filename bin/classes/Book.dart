@@ -16,11 +16,11 @@ class Book extends item {
   }
 
   // Getters & Setters
-  get getId => id;
-  get getTitle => titel;
-  get getAuthor => author;
-  get getPrice => price;
-  get getQiantity => quantity;
+  int get getId => id;
+  String get getTitle => titel;
+  String get getAuthor => author;
+  double get getPrice => price;
+  int get getQuantity => quantity;
 
   set setId(id) => this.id = id;
   set setTitle(title) => this.titel = titel;

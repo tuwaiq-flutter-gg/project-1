@@ -1,7 +1,7 @@
 import 'classes/Book.dart';
 import 'dart:io';
 
-enum oprations { exit, add, delete, edit, viewInfo }
+enum oprations { exit, add, delete, edit, viewInfo, sell }
 
 // just sample books.
 Book b1 = Book(
@@ -56,6 +56,8 @@ void main() {
       editBook();
     } else if (op == oprations.viewInfo.index) {
       viewAllbooks();
+    } else if (op == oprations.sell.index) {
+      sellBook();
     } else
       print("Wrong number");
     print("\n\n");
@@ -74,6 +76,7 @@ void menu() {
   print("== 2) To remove a book, choose 2\t\t\t\t\t\t==");
   print("== 3) To edit a book, choose 3\t\t\t\t\t\t\t==");
   print("== 4) To view information, choose 4\t\t\t\t\t\t==");
+  print("== 5) To buy a book, choose 5\t\t\t\t\t\t\t==");
   print("== 0) To exit, choose 0\t\t\t\t\t\t\t\t==");
   print("=" * 82);
 }
@@ -216,6 +219,49 @@ void editBook() {
     } catch (e) {
       print("There is no book with the given Id or Title");
     }
+  }
+}
+
+void sellBook() {
+  stdout.write("Enter book ID or Title: ");
+  String idOrTitle = stdin.readLineSync()!;
+  int bookIndex = serachByTitle(idOrTitle);
+  Book selledBook;
+  if (bookIndex != -1) {
+    // title is found. selling ...
+    sell(bookIndex);
+  } else {
+    // it is not a title. search for id or it could be an invaled input.
+    try {
+      bookIndex = serachByID(int.parse(idOrTitle));
+      if (bookIndex != -1) {
+        // id is found. selling ...
+        sell(bookIndex);
+      } else {
+        print("There is no book with the given Id or Title");
+      }
+    } catch (e) {
+      print("There is no book with the given Id or Title");
+    }
+  }
+}
+
+void sell(int bookIndex) {
+  stdout.write("How many books do you want: ");
+  int qty = checkInt(stdin.readLineSync()!);
+  if (books[bookIndex].getQuantity >= qty) {
+    books[bookIndex].setQuantity = books[bookIndex].getQuantity - qty;
+    print("#" * 50);
+    print("#------------------Bill----------------#");
+    print("# Item ID: ${books[bookIndex].getId}");
+    print("# Item Name: ${books[bookIndex].getTitle}");
+    print("# Item Quantity: $qty");
+    print("# VAT = ${0.15 * qty * books[bookIndex].getPrice}");
+    print("# Total = ${qty * books[bookIndex].getPrice}");
+    print("# Thank you, we hope to see you next time. ;)");
+    print("#" * 50);
+  } else {
+    print("Sorry! we are out of stock");
   }
 }
 
