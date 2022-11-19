@@ -259,7 +259,9 @@ class BookList {
             if (switchReadLineString == "^E") {
               readLineString = switchReadLineString;
             }
-            if (switchReadLineString != null && switchReadLineString != "^E" && switchReadLineString != "^C") {
+            if (switchReadLineString != null &&
+                switchReadLineString != "^E" &&
+                switchReadLineString != "^C") {
               searchResult = books
                   .where((element) =>
                       element.book_title.contains(switchReadLineString!))
@@ -288,7 +290,9 @@ class BookList {
             if (switchReadLineString == "^E") {
               readLineString = switchReadLineString;
             }
-            if (switchReadLineString != null && switchReadLineString != "^E" && switchReadLineString != "^C") {
+            if (switchReadLineString != null &&
+                switchReadLineString != "^E" &&
+                switchReadLineString != "^C") {
               searchResult = books
                   .where((element) =>
                       element.author.toString().contains(switchReadLineString!))
@@ -415,8 +419,46 @@ class BookList {
         print("The Book you choose are :");
         print(
             '|--ID--|---------Book Title---------|----------Author----------|--Price--|-Quantity-|');
-        for (var element in originalBookList.values) {
-          element.view();
+        for (var element in originalBookList.entries) {
+          //element.view();
+          String printID = element.value.book_id.toString();
+          if (printID.length < 5) {
+            printID = " " * ((5 - printID.length) ~/ 2) + printID;
+          }
+          printID = printID.padRight(5);
+          //-----
+          String printTitle = element.value.book_title;
+          if (printTitle.length < 26) {
+            printTitle = " " * ((26 - printTitle.length) ~/ 2) + printTitle;
+          }
+          printTitle = printTitle.padRight(26);
+          if (printTitle.length > 26) {
+            printTitle = "${printTitle.substring(1, 24)}...";
+          }
+          //-------
+          String printAuthor = element.value.author;
+          if (printAuthor.length < 24) {
+            printAuthor = " " * ((24 - printAuthor.length) ~/ 2) + printAuthor;
+          }
+          printAuthor = printAuthor.padRight(24);
+          if (printAuthor.length > 24) {
+            printAuthor = "${printAuthor.substring(1, 22)}...";
+          }
+          //-------
+          String printPrice = element.value.price.toString();
+          if (printPrice.length < 7) {
+            printPrice = " " * ((7 - printPrice.length) ~/ 2) + printPrice;
+          }
+          printPrice = printPrice.padRight(7);
+          //-------
+          String printQuantity = element.key.toString().padLeft(4, "0");
+          if (printQuantity.length < 9) {
+            printQuantity =
+                " " * ((9 - printQuantity.length) ~/ 2) + printQuantity;
+          }
+          printQuantity = printQuantity.padRight(9);
+          print(
+              "|$printID | $printTitle | $printAuthor | $printPrice | $printQuantity|");
         }
 
         print("Are you sure you want to Buy enter [Y] for yes or [N] for no");
