@@ -31,7 +31,7 @@ class Book implements IBook {
     }
     printTitle = printTitle.padRight(26);
     if (book_title.length > 26) {
-      printTitle = "${printTitle.substring(1, 24)}...";
+      printTitle = "${book_title.substring(1, 24)}...";
     }
     //-------
     String printAuthor = "";
@@ -40,7 +40,7 @@ class Book implements IBook {
     }
     printAuthor = printAuthor.padRight(24);
     if (author.length > 24) {
-      printAuthor = "${printAuthor.substring(1, 22)}...";
+      printAuthor = "${author.substring(1, 22)}...";
     }
     //-------
     String printPrice = price.toString().padLeft(5).padRight(7);
