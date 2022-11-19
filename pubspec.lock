@@ -36,6 +36,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  chalkdart:
+    dependency: "direct main"
+    description:
+      name: chalkdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.8"
   collection:
     dependency: transitive
     description:

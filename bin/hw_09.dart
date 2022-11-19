@@ -1,5 +1,6 @@
 import 'classes/Book.dart';
 import 'dart:io';
+import 'package:chalkdart/chalk.dart';
 
 enum oprations { exit, add, delete, edit, viewInfo, sell }
 
@@ -69,15 +70,21 @@ void main() {
 void menu() {
   print("=" * 82);
   print("==\t\t\t\t\t\t\t\t\t\t==");
-  print("==\t\t\t\t     Library\t\t\t\t\t==");
+  print(chalk.yellow.onBlue.bold("==\t\t\t\tLibrary\t\t\t\t\t=="));
   print("==\t\t\t\t\t\t\t\t\t\t==");
   print("=" * 82);
-  print("== 1) To add a book, choose 1\t\t\t\t\t\t\t==");
-  print("== 2) To remove a book, choose 2\t\t\t\t\t\t==");
-  print("== 3) To edit a book, choose 3\t\t\t\t\t\t\t==");
-  print("== 4) To view information, choose 4\t\t\t\t\t\t==");
-  print("== 5) To buy a book, choose 5\t\t\t\t\t\t\t==");
-  print("== 0) To exit, choose 0\t\t\t\t\t\t\t\t==");
+  print(chalk.underline.blink
+      .blue("== 1) To add a book, choose 1\t\t\t\t\t\t\t=="));
+  print(chalk.underline.blink
+      .blue("== 2) To remove a book, choose 2\t\t\t\t\t\t=="));
+  print(chalk.underline.blink
+      .blue("== 3) To edit a book, choose 3\t\t\t\t\t\t\t=="));
+  print(chalk.underline.blink
+      .blue("== 4) To view information, choose 4\t\t\t\t\t\t=="));
+  print(chalk.underline.blink
+      .blue("== 5) To buy a book, choose 5\t\t\t\t\t\t\t=="));
+  print(
+      chalk.underline.blink.blue("== 0) To exit, choose 0\t\t\t\t\t\t\t\t=="));
   print("=" * 82);
 }
 
@@ -123,13 +130,13 @@ void addBook() {
   int bookId;
   do {
     // check if the book id is already exist or not
-    stdout.write("Please enter the book ID: ");
+    stdout.write(chalk.white("Please enter the book ID: "));
     bookId = checkInt(stdin.readLineSync()!);
 
     if (bookId == 0) return;
     if (serachByID(bookId) != -1) {
       print(
-          "This book id alread exist.\nplease enter anothor or (0) to exit. ");
+        chalk.yellow.onBlue.bold(  "This book id alread exist.\nplease enter anothor or (0) to exit. "));
     } else
       break;
   } while (true);
@@ -142,7 +149,7 @@ void addBook() {
     if (bookTitle == "0") return;
     if (serachByTitle(bookTitle) != -1) {
       print(
-          "This book title alread exist.\nplease enter anothor or (0) to exit. ");
+       chalk.yellow.onBlue.bold("This book title alread exist.\nplease enter anothor or (0) to exit. "));
     } else
       break;
   } while (true);
@@ -159,7 +166,7 @@ void addBook() {
       author: author,
       price: priceBook,
       quantity: quantityBook));
-  print("Book is added");
+  print(chalk.blue("Book is added"));
 }
 
 void removeBook() {
@@ -170,7 +177,7 @@ void removeBook() {
   if (bookIndex != -1) {
     // title is found. removing ...
     removedBook = books.removeAt(bookIndex);
-    print("Book with title [${removedBook.getTitle}] is removed.");
+    print(chalk.blue.bgWhite("Book with title [${removedBook.getTitle}] is removed."));
   } else {
     // it is not a title. search for id or it could be an invaled input.
     try {
@@ -178,12 +185,12 @@ void removeBook() {
       if (bookIndex != -1) {
         // id is found. removing ...
         removedBook = books.removeAt(bookIndex);
-        print("Book with title [${removedBook.getTitle}] is removed.");
+        print(chalk.blue.bgWhite("Book with title [${removedBook.getTitle}] is removed."));
       } else {
-        print("There is no book with the given Id or Title");
+        print(chalk.bgRed("There is no book with the given Id or Title"));
       }
     } catch (e) {
-      print("There is no book with the given Id or Title");
+      print(chalk.bgRed("There is no book with the given Id or Title"));
     }
   }
 }
@@ -192,7 +199,7 @@ void viewAllbooks() {
   print("\nAll books informations: ");
   print("=" * 30);
   for (Book b in books) {
-    print(b);
+    print(chalk.bgWhite.blue(b));
     print("=" * 30);
   }
 }
@@ -204,7 +211,7 @@ void editBook() {
   if (bookIndex != -1) {
     // title is found. editing ...
     editInfoOf(bookIndex);
-    print("Book with title [${books[bookIndex].getTitle}] is edited.");
+    print(chalk.blue.bgWhite("Book with title [${books[bookIndex].getTitle}] is edited."));
   } else {
     // it is not a title. search for id or it could be an invaled input.
     try {
@@ -214,10 +221,10 @@ void editBook() {
         editInfoOf(bookIndex);
         print("Book with title [${books[bookIndex].getTitle}] is edited.");
       } else {
-        print("There is no book with the given Id or Title");
+        print(chalk.bgRed("There is no book with the given Id or Title"));
       }
     } catch (e) {
-      print("There is no book with the given Id or Title");
+      print(chalk.bgRed("There is no book with the given Id or Title"));
     }
   }
 }
@@ -238,30 +245,31 @@ void sellBook() {
         // id is found. selling ...
         sell(bookIndex);
       } else {
-        print("There is no book with the given Id or Title");
+        print(chalk.bgRed("There is no book with the given Id or Title"));
       }
     } catch (e) {
-      print("There is no book with the given Id or Title");
+      print(chalk.bgRed("There is no book with the given Id or Title"));
     }
   }
 }
 
 void sell(int bookIndex) {
-  stdout.write("How many books do you want: ");
+  stdout.write(chalk.blue.bgWhite("How many books do you want: "));
   int qty = checkInt(stdin.readLineSync()!);
   if (books[bookIndex].getQuantity >= qty) {
     books[bookIndex].setQuantity = books[bookIndex].getQuantity - qty;
-    print("#" * 50);
-    print("#------------------Bill----------------#");
-    print("# Item ID: ${books[bookIndex].getId}");
-    print("# Item Name: ${books[bookIndex].getTitle}");
-    print("# Item Quantity: $qty");
-    print("# VAT = ${0.15 * qty * books[bookIndex].getPrice}");
-    print("# Total = ${qty * books[bookIndex].getPrice}");
-    print("# Thank you, we hope to see you next time. ;)");
-    print("#" * 50);
+    
+    print(chalk.bgGreen("#" * 50));
+    print(chalk.bgGreen("#------------------Bill----------------#"));
+    print(chalk.blue.bgWhite("# Item ID: ${books[bookIndex].getId}"));
+    print(chalk.blue.bgWhite("# Item Name: ${books[bookIndex].getTitle}"));
+    print(chalk.blue.bgWhite("# Item Quantity: $qty"));
+    print(chalk.blue.bgWhite("# VAT = ${0.15 * qty * books[bookIndex].getPrice}"));
+    print(chalk.blue.bgWhite("# Total = ${qty *books[bookIndex].getPrice}"));
+    print(chalk.blue.bgWhite("# Thank you, we hope to see you next time. ;)"));
+    print(chalk.green("#" * 50));
   } else {
-    print("Sorry! we are out of stock");
+    print(chalk.bgRed("Sorry! we are out of stock"));
   }
 }
 
