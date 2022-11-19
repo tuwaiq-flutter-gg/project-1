@@ -12,7 +12,7 @@ class Searching {
     String search;
     while (searching) {
       print(
-          "How do you want to Search\n1 By ID\n2 By Title \n3 By Author or enter R to return");
+          "How do you want to Search?\n1- By ID.\n2- By Title. \n3- By Author. \nor enter R to return");
       search = stdin.readLineSync()!;
       if (search == "1" || search == "2" || search == "3") {
         searching = false;
@@ -20,7 +20,7 @@ class Searching {
       } else if (search == "r" || search == "R") {
         return 0;
       } else {
-        print("You entered Wrong value ");
+        print("You entered Wrong value! ");
       }
     }
   }
@@ -32,7 +32,7 @@ class Searching {
     bool se = true;
     if (search == "1") {
       while (se) {
-        print("Enter Book ID");
+        print("Enter Book ID:");
         booksearch = int.parse(stdin.readLineSync()!);
         for (int i = 0; i < Books.length; i++) {
           var item = Books[i].book_id;
@@ -46,7 +46,7 @@ class Searching {
       }
     } else if (search == "2") {
       while (se) {
-        print("Enter Book Title");
+        print("Enter Book Title:");
         booksearch = stdin.readLineSync()!;
         for (int i = 0; i < Books.length; i++) {
           var item = Books[i].book_title;
@@ -61,7 +61,7 @@ class Searching {
       }
     } else if (search == "3") {
       while (se) {
-        print("Enter Book Autor");
+        print("Enter Book Autor:");
         booksearch = stdin.readLineSync()!;
         for (int i = 0; i < Books.length; i++) {
           var item = Books[i].author;

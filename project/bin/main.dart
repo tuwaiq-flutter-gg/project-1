@@ -11,7 +11,7 @@ void main() {
 }
 
 RunTheLibrary() {
-  print("Welcome to Our library");
+  print("Welcome to Our library ");
 
   bool quit = false;
   bool back = false; // to return back one step
@@ -20,7 +20,7 @@ RunTheLibrary() {
 
   do {
     print(
-        "pleas select:\n1- Show all library books\n2- Search for a book\n3- Add a book\n4- Sell a book\n5- Delete a book\n6- ViewCart\n7- CheckOut\nQ- quit");
+        "pleas select option:\n1- Show all library books\n2- Search for a book\n3- Add a book\n4- Sell a book\n5- Delete a book\n6- ViewCart\n7- CheckOut\nQ- quit");
     String? input = stdin.readLineSync();
     switch (input) {
       case "1": // Show all books
@@ -35,8 +35,11 @@ RunTheLibrary() {
             theBook = Searching.search();
 
             if (theBook > 0) {
+              print("--------------------------------------");
               print(
                   "you find the book that you are looking for, what do you want to do?\n1- Edit the book\n2- Buy the book\n3- Delete the book\n4- Return to the main menu");
+                  
+              
               String? fundedBook = stdin.readLineSync();
               if (fundedBook == "1") {
                 WhatToEdit(theBook);
@@ -50,7 +53,7 @@ RunTheLibrary() {
               } else if (fundedBook == "4") {
                 back = true;
               } else {
-                print("miss input, please try agin");
+                print("miss input, please try again");
                 back = true;
               }
             } else {

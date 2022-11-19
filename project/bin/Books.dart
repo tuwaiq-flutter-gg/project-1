@@ -16,12 +16,12 @@ List<Book> Books = [
       price: 59.9,
       quantity: 22),
   Book(
-      book_title: "Clean Code",
+      book_title: "Clean Code     ",
       author: "Rpbert Cecil Martin",
       price: 50,
       quantity: 5),
   Book(
-      book_title: "Zero to One",
+      book_title: "Zero to One    ",
       author: "Peter Thiel",
       price: 45,
       quantity: 12),
@@ -113,7 +113,8 @@ class Book extends Library {
   @override
   viewInformation() {
     print(
-        "The ID is \"$book_id\"\tThe Title is \"$book_title\"\tThe author \"$author\"\tThe price is \"$price\"\tThe quantity is \"$quantity\" ");
+        " Book information : \n The ID: \"$book_id\"\tThe Title: \"$book_title\"\tThe author: \"$author\"\tThe price: \"$price\"\tThe quantity: \"$quantity\" ");
+        
   }
 }
 
@@ -125,7 +126,7 @@ add() {
   bool adding = true;
 
   while (adding) {
-    print("Enter Book Title");
+    print("Enter Book Title:");
     title = stdin.readLineSync();
     if (title != "") {
       adding = false;
@@ -133,7 +134,7 @@ add() {
   }
   adding = true;
   while (adding) {
-    print("Enter Book Author");
+    print("Enter Book Author:");
     author = stdin.readLineSync()!;
     if (author != "") {
       adding = false;
@@ -141,7 +142,7 @@ add() {
   }
   adding = true;
   while (adding) {
-    print("Enter Book Price");
+    print("Enter Book Price:");
     price = double.parse(stdin.readLineSync()!);
     if (price > 0) {
       adding = false;
@@ -157,13 +158,14 @@ add() {
   }
   Books.add(Book(
       book_title: title, author: author, price: price, quantity: quantity));
-  print("Nice you have added the Book");
+  print("Nice you have added the Book successfully");
+  print("--------------------------------------");
 }
 
 delete() {
   bool deleting = true;
   int deleteID;
-  String deleteMessage = "Enter Book ID for deleting it ";
+  String deleteMessage = "Enter Book ID To delet it ";
   while (deleting) {
     print(deleteMessage);
     deleteID = int.parse(stdin.readLineSync()!);
@@ -173,7 +175,7 @@ delete() {
         Books.remove(Books[i]);
         deleting = false;
         print("You deleted the Book with ID $x");
-        print("-_-_-_-_-_-_-_-_-_-_-_-_-");
+        print("--------------------------------------");
       }
       deleteMessage = "Re enter a Valid ID";
     }
@@ -185,17 +187,18 @@ deleteByID(int ID) {
     int x = Books[i].book_id;
     if (x == ID) {
       Books.remove(Books[i]);
-      print("The Book has been removed");
-      print("-_-_-_-_-_-_-_-_-_-_-_-_-");
+      print("The Book has been removed successfully");
+      print("--------------------------------------");
     }
   }
 }
 
 viewLibrary() {
   print("The List in Your Library");
+ print("--------------------------------------");
   for (int i = 0; i < Books.length; i++) {
     print(
-        "The ID: ${Books[i].book_id}\tThe Title: ${Books[i].book_title}\tThe author name: ${Books[i].author}\t The price: ${Books[i].price}\t The quantity: ${Books[i].quantity}");
+        "Book${Books[i].book_id} : \n The ID: ${Books[i].book_id}\tThe Title: ${Books[i].book_title}\tThe author name: ${Books[i].author}\t The price: ${Books[i].price}\t The quantity: ${Books[i].quantity}");
   }
   print("--------------------------------------");
 }

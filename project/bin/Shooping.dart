@@ -78,15 +78,16 @@ addToCart(ID) {
 viewCart() {
   double total = 0;
   if (cart.length == 0) {
-    print("Your cart is empty");
+    print("Your cart is empty !");
   } else {
-    print("Your Shooping Cart has these items");
+    print("Your Shooping Cart has these items:");
     for (int i = 0; i < cart.length; i++) {
       total += cart[i].price!;
       print(
           "Book ID ${cart[i].book_id} Book Title ${cart[i].book_title} the price = ${cart[i].price}");
     }
     print("Total = $total");
+    print("--------------------------------------");
   }
 }
 
@@ -95,6 +96,7 @@ Checkout() {
     print("You didnot add anything to your cart");
   } else {
     print("Thank you for your Shooping");
+    print("--------------------------------------");
     cart.removeRange(0, cart.length);
   }
 }
