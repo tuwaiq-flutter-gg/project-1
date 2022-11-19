@@ -1,45 +1,23 @@
 import 'dart:io';
 import 'dart:math';
 
-List<Book> Books = [
-  Book(
-      book_title: "Start With Why",
-      author: "Simon Sink",
-      price: 80,
-      quantity: 13),
-  Book(
-      book_title: "But how do it know",
-      author: "J.Clark Scott",
-      price: 59.9,
-      quantity: 22),
-  Book(
-      book_title: "Clean Code",
-      author: "Rpbert Cecil Martin",
-      price: 50,
-      quantity: 5),
-  Book(
-      book_title: "Zero to One",
-      author: "Peter Thiel",
-      price: 45,
-      quantity: 12),
-  Book(
-      book_title: "You dont know JS",
-      author: "Kyle Simpson",
-      price: 39.9,
-      quantity: 9)
-];
-int counter = 1;
-List cart = [];
+import 'Editing.dart';
+import 'Books.dart';
+import 'search.dart';
+
+//import 'package:print_table/print_table.dart';
+
 void main() {
   print("Welcom to pur library");
   //add();
-  //search();
-  // print(Books.length);
-  // delete();
-  // print(Books.length);
-  print(cart.length);
-  buying();
-  print(cart.length);
+  //delete();
+  //buying();
+  // add();
+  // print(Books[5].viewInformation());
+  WhatToEdit(1);
+  print(Books[0].viewInformation());
+
+  
 }
 
 abstract class Library {
@@ -61,6 +39,41 @@ class Book extends Library {
       required this.quantity}) {
     this.book_id = counter;
     counter++;
+  }
+  getID() {
+    return this.book_id;
+  }
+
+  getTitle() {
+    return book_title;
+  }
+
+  getAuthor() {
+    return author;
+  }
+
+  getPrice() {
+    return price;
+  }
+
+  getQuantity() {
+    return quantity;
+  }
+
+  setTitle(String title) {
+    this.book_title = title;
+  }
+
+  setAuthor(String author) {
+    this.author = author;
+  }
+
+  setPrice(double prise) {
+    this.price = price;
+  }
+
+  setQuantity(int quantity) {
+    this.quantity = quantity;
   }
 
   @override
@@ -85,7 +98,7 @@ class Book extends Library {
   @override
   viewInformation() {
     print(
-        "The ID is $book_id\tThe Title is $book_title\tThe author $author\tThe price is $price\tThe quantity is $quantity ");
+        "The ID is \"$book_id\"\tThe Title is \"$book_title\"\tThe author \"$author\"\tThe price is \"$price\"\tThe quantity is \"$quantity\" ");
   }
 }
 
@@ -131,63 +144,6 @@ add() {
       book_title: title, author: author, price: price, quantity: quantity));
 }
 
-look(int search) {
-  var booksearch;
-  bool se = true;
-  if (search == 1) {
-    while (se) {
-      print("Enter Book ID");
-      booksearch = int.parse(stdin.readLineSync()!);
-      for (int i = 0; i < Books.length; i++) {
-        var item = Books[i].book_id;
-        if (item == booksearch) {
-          Books[i].viewInformation();
-          se = false;
-        }
-      }
-    }
-  } else if (search == 2) {
-    while (se) {
-      print("Enter Book Title");
-      booksearch = stdin.readLineSync()!;
-      for (int i = 0; i < Books.length; i++) {
-        var item = Books[i].book_title;
-        if (item!.contains(booksearch)) {
-          // if (item == booksearch) for exact Match
-          Books[i].viewInformation();
-          se = false;
-        }
-      }
-    }
-  } else if (search == 3) {
-    while (se) {
-      print("Enter Book Autor");
-      booksearch = stdin.readLineSync()!;
-      for (int i = 0; i < Books.length; i++) {
-        var item = Books[i].author;
-        if (item!.contains(booksearch)) {
-          // // if (item == booksearch) for exact Match
-          Books[i].viewInformation();
-          se = false;
-        }
-      }
-    }
-  }
-}
-
-search() {
-  bool searching = true;
-  int search;
-  while (searching) {
-    print("How do you want to Search\n1 By ID\n2 By Title \n3 By Author");
-    search = int.parse(stdin.readLineSync()!);
-    if (search == 1 || search == 2 || search == 3 || search == 4) {
-      look(search);
-      searching = false;
-    }
-  }
-}
-
 delete() {
   bool deleting = true;
   int deleteID;
@@ -210,10 +166,11 @@ buying() {
   bool shopping = true;
   int BookID;
   int q = 0;
-  String deleteMessage = "Enter Book ID to put it in cart";
+  String Cart = "Enter Book ID to put it in cart";
   while (shopping) {
-    print(deleteMessage);
+    print(Cart);
     BookID = int.parse(stdin.readLineSync()!);
+    bool b = false;
     for (int i = 0; i < Books.length; i++) {
       int x = Books[i].book_id;
       // print(x);
@@ -222,14 +179,17 @@ buying() {
           //Books[i].sell() did not work tried another way
           Books[i].quantity -= 1;
           cart.add(Books[i]);
-          q++;
+          // q++;
+          b = true;
+          //Cart = "Enter another ID";
           // print(x);
         } else {
           print("Sorry! we are out of stock");
         }
       }
     }
-    if (q > 0) {
+    if (b) {
+      // check if the book has been added to the cart
       print("enter 0 to finish shopping or anyNumber to choose another Book");
       BookID = int.parse(stdin.readLineSync()!);
       if (BookID == 0) {
