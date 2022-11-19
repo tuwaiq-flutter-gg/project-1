@@ -62,7 +62,7 @@ void main() {
       print("Wrong number");
     print("\n\n");
   } while (run);
-  print("Thank you. ;)");
+  print("Goodbay. ;)");
 }
 
 // To print the menu.
