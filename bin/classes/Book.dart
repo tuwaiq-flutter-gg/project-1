@@ -12,7 +12,7 @@ class Book extends item {
       : super(id: id, quantity: quantity);
   @override
   String toString() {
-    return "Id:$id, Title:$titel, Author:$author, Price:$price, Quantity:$quantity";
+    return "Id: $id\nTitle: $titel\nAuthor: $author\nPrice: $price\nQuantity: $quantity";
   }
 
   // Getters & Setters

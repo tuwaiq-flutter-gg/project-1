@@ -1,5 +1,4 @@
 import 'classes/Book.dart';
-import 'classes/user.dart';
 import 'dart:io';
 
 enum oprations { exit, add, delete, edit, viewInfo }
@@ -56,7 +55,7 @@ void main() {
       print("edit");
       print(books);
     } else if (op == oprations.viewInfo.index) {
-      print("viewInfo");
+      viewAllbooks();
     } else
       print("Wrong number");
     print("\n\n");
@@ -185,6 +184,16 @@ void removeBook() {
     }
   }
 }
+
+void viewAllbooks() {
+  print("\nAll books informations: ");
+  print("=" * 30);
+  for (Book b in books) {
+    print(b);
+    print("=" * 30);
+  }
+}
+
 
 /*---------------------Support Functions---------------------*/
 /* To check if the given op can be parsed to int, 
