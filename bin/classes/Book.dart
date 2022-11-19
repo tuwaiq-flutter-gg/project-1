@@ -26,7 +26,7 @@ class Book extends item {
   set setTitle(title) => this.titel = titel;
   set setAuthor(author) => this.author = author;
   set setPrice(price) => this.price = price;
-  set setQiantity(quantity) => this.quantity = quantity;
+  set setQuantity(quantity) => this.quantity = quantity;
 
   @override
   showInfo() {

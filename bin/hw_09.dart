@@ -3,6 +3,7 @@ import 'dart:io';
 
 enum oprations { exit, add, delete, edit, viewInfo }
 
+// just sample books.
 Book b1 = Book(
     id: 1,
     titel: "Start with why",
@@ -52,8 +53,7 @@ void main() {
     } else if (op == oprations.delete.index) {
       removeBook();
     } else if (op == oprations.edit.index) {
-      print("edit");
-      print(books);
+      editBook();
     } else if (op == oprations.viewInfo.index) {
       viewAllbooks();
     } else
@@ -194,6 +194,71 @@ void viewAllbooks() {
   }
 }
 
+void editBook() {
+  stdout.write("Enter book ID or Title: ");
+  String idOrTitle = stdin.readLineSync()!;
+  int bookIndex = serachByTitle(idOrTitle);
+  if (bookIndex != -1) {
+    // title is found. editing ...
+    editInfoOf(bookIndex);
+    print("Book with title [${books[bookIndex].getTitle}] is edited.");
+  } else {
+    // it is not a title. search for id or it could be an invaled input.
+    try {
+      bookIndex = serachByID(int.parse(idOrTitle));
+      if (bookIndex != -1) {
+        // id is found. editing ...
+        editInfoOf(bookIndex);
+        print("Book with title [${books[bookIndex].getTitle}] is edited.");
+      } else {
+        print("There is no book with the given Id or Title");
+      }
+    } catch (e) {
+      print("There is no book with the given Id or Title");
+    }
+  }
+}
+
+// Support function to theeditBook function, you should give it the index of the book.
+void editInfoOf(int bookIndex) {
+  print("1) ID\n2) Title \n3) Author\n4) Price \n5) Quantity");
+  stdout.write("What feature do you want to edit: ");
+  int op = checkInt(stdin.readLineSync()!);
+  switch (op) {
+    case 1:
+      int newId;
+      do {
+        stdout.write("Enter the new ID: ");
+        newId = checkInt(stdin.readLineSync()!);
+        // cheak the id is not already exist.
+        if (serachByID(newId) == -1) break; // new id, stop the loop.
+      } while (true);
+      books[bookIndex].setId = newId;
+      break;
+    case 2:
+      String newTitle;
+      do {
+        stdout.write("Enter the new title: ");
+        newTitle = stdin.readLineSync()!;
+        // cheak the title is not already exist.
+        if (serachByTitle(newTitle) == -1) break; // new tilte, stop the loop.
+      } while (true);
+      books[bookIndex].setTitle = newTitle;
+      break;
+    case 3:
+      stdout.write("Enter the new author name: ");
+      books[bookIndex].setAuthor = stdin.readLineSync()!; // no constrins
+      break;
+    case 4:
+      stdout.write("Enter the new price: ");
+      books[bookIndex].setPrice = checkdouble(stdin.readLineSync()!);
+      break;
+    case 5:
+      stdout.write("Enter the new Quintity: ");
+      books[bookIndex].setQuantity = checkInt(stdin.readLineSync()!);
+      break;
+  }
+}
 
 /*---------------------Support Functions---------------------*/
 /* To check if the given op can be parsed to int, 
