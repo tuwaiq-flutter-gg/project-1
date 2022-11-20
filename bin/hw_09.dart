@@ -39,7 +39,7 @@ Book b5 = Book(
 List<Book> books = [b1, b2, b3, b4, b5];
 void main() {
   bool run = true;
-  int op = 1;
+  // int op = 1;
 
   do {
     menu();
@@ -204,7 +204,7 @@ void viewAllbooks() {
   }
 }
 
-void editBook() {
+ void editBook() {
   stdout.write("Enter book ID or Title: ");
   String idOrTitle = stdin.readLineSync()!;
   int bookIndex = serachByTitle(idOrTitle);
@@ -329,7 +329,7 @@ int checkInt(String op) {
         break;
       } catch (e) {/* do nothing */}
     }
-    stdout.write("Wrong input, please enter an integer number ");
+    stdout.write(chalk.bgRed("Wrong input, please enter an integer number "));
     op = stdin.readLineSync()!;
   } while (true);
   return returnOp;
@@ -349,7 +349,7 @@ double checkdouble(String op) {
         break;
       } catch (e) {/* do nothing */}
     }
-    stdout.write("Wrong input, please choose one of the serveces: ");
+    stdout.write(chalk.bgRed("Wrong input, please choose one of the serveces: "));
     op = stdin.readLineSync()!;
   } while (true);
   return returnOp;
