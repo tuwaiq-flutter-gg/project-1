@@ -123,7 +123,7 @@ class Info extends LibraryBook {
     print("Enter the new Author:");
     String? newAuthor = stdin.readLineSync();
     print("Enter the new Price:");
-    int? newPrice = int.parse(stdin.readLineSync()!);
+    double? newPrice = double.parse(stdin.readLineSync()!);
     print("Enter the new Quantity:");
     int? newQuantity = int.parse(stdin.readLineSync()!);
     myListBook[editInput - 1] = BooksRequirments(
