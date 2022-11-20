@@ -45,6 +45,8 @@ void main(List<String> arguments) {
       quantity: 9);
   BookList.books.add(b5);
 
+  BookList.lastID = 5;
+
   //BookList.viewAllBooks();
   String? readLine;
 
