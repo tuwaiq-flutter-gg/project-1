@@ -4,6 +4,7 @@ export 'Book/delete.dart';
 export 'Book/edit.dart';
 export 'Book/sell.dart';
 export 'Book/view.dart';
+export 'Book/search.dart';
 
 
 export 'dart:io';

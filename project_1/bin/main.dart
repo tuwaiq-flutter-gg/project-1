@@ -7,6 +7,7 @@ main(){
   SellingBooks sellBook = SellingBooks(); //Object from View Sell Class
   DeleteBook deleteBook = DeleteBook(); //Object from Delete Class
   AddBook add = AddBook();
+  SerchByAthor sA = SerchByAthor();
   
 
   
@@ -51,6 +52,7 @@ main(){
 
     case 5: {
       print("Search for Book:");
+      sA.SerchByAuthor();
 
     } break;
 
