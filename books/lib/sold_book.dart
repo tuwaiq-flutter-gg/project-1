@@ -1,10 +1,15 @@
 class SoldBook {
+  final int id;
   String title;
   double price;
   int quantity;
   double total = 0;
 
-  SoldBook({required this.title, required this.price, required this.quantity}) {
+  SoldBook(
+      {required this.id,
+      required this.title,
+      required this.price,
+      required this.quantity}) {
     total = price * quantity;
   }
 

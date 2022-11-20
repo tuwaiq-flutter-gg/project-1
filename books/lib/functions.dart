@@ -7,24 +7,30 @@ import 'package:collection/collection.dart';
 viewAllBooks() {
   print(
       '|--ID--|---------Book Title---------|----------Author----------|--Price--|-Quantity-|');
-  if (BookList.books.isNotEmpty) {// if list has books
+  if (BookList.books.isNotEmpty) {
+    // if list has books
     BookList.books.forEach((element) {
-      element.view();// ويعرضه booksيمر على كل عنصر في
+      element.view(); // ويعرضه booksيمر على كل عنصر في
     });
   } else {
-    print("No Books Found".padLeft(45)); // print this statement if there is no books
+    print("No Books Found"
+        .padLeft(45)); // print this statement if there is no books
   }
 }
 
-add() { //create a function for add a book
+add() {
+  //create a function for add a book
   String? readLineString;
   do {
     String? titleReadLineString;
-    while (titleReadLineString == null || titleReadLineString.isEmpty) { // يشيك اذا كانت فاضيه يطبع العباره
-      stdout.write("Enter a valid Title : "); // will block the program until the output is written
-      titleReadLineString = stdin.readLineSync(); //method used to take input from the user
+    while (titleReadLineString == null || titleReadLineString.isEmpty) {
+      // يشيك اذا كانت فاضيه يطبع العباره
+      stdout.write(
+          "Enter a valid Title : "); // will block the program until the output is written
+      titleReadLineString =
+          stdin.readLineSync(); //method used to take input from the user
       if (titleReadLineString != null) {
-        titleReadLineString = titleReadLineString.trim(); // to delete spaces 
+        titleReadLineString = titleReadLineString.trim(); // to delete spaces
       }
     }
     String? authorReadLineString;
@@ -42,7 +48,8 @@ add() { //create a function for add a book
       priceReadLineString = stdin.readLineSync();
       if (priceReadLineString != null) {
         priceReadLineString = priceReadLineString.trim();
-        price = double.tryParse(priceReadLineString);  // convert string input to double 
+        price = double.tryParse(
+            priceReadLineString); // convert string input to double
       }
     }
     String? quantityReadLineString;
@@ -52,21 +59,24 @@ add() { //create a function for add a book
       quantityReadLineString = stdin.readLineSync();
       if (quantityReadLineString != null) {
         quantityReadLineString = quantityReadLineString.trim();
-        quantity = int.tryParse(quantityReadLineString); //convert string input to integer 
+        quantity = int.tryParse(
+            quantityReadLineString); //convert string input to integer
       }
     }
-    BookList.lastID++; // after writing everything it will add id by one 
+    BookList.lastID++; // after writing everything it will add id by one
     Book book = Book(
         book_id: BookList.lastID,
         book_title: titleReadLineString, // save the input title in book title
-        author: authorReadLineString, // save the input author in  author 
-        price: price, // we saved iquantityReadLineString in "price" befor ,so now we just add price to the price object
-        quantity: quantity); // same price 
+        author: authorReadLineString, // save the input author in  author
+        price:
+            price, // we saved iquantityReadLineString in "price" befor ,so now we just add price to the price object
+        quantity: quantity); // same price
     BookList.books.add(book); // to add the input book to the our library
 
     readLineString = null;
     print("Do you want to Add another Book [Y] for Yes or [N] for No : ");
-    while (readLineString != "Y" && readLineString != "N") { // if the user write Y or N it will save the input into "readLineString" 
+    while (readLineString != "Y" && readLineString != "N") {
+      // if the user write Y or N it will save the input into "readLineString"
       readLineString = stdin.readLineSync();
       if (readLineString != null) {
         readLineString = readLineString.trim();
@@ -75,24 +85,28 @@ add() { //create a function for add a book
   } while (readLineString != "N");
 }
 
-edit() { // create a function to edit an element in the librery 
+edit() {
+  // create a function to edit an element in the librery
   String? readLineString;
   int? bookID;
   Book? book;
   do {
     viewAllBooks(); // at first we will show all the books to choose the book that the user can to make changes on it
     print("Enter a valid Book ID to Edit or [^E] to Exit : ");
-    readLineString = stdin.readLineSync(); // save the input id to the " readLineString"
+    readLineString =
+        stdin.readLineSync(); // save the input id to the " readLineString"
     if (readLineString != null) {
       readLineString = readLineString.trim();
-      bookID = int.tryParse(readLineString); // convert the string input to integer and save it in bookID
+      bookID = int.tryParse(
+          readLineString); // convert the string input to integer and save it in bookID
     }
     if (bookID != null) {
       book = BookList.books
           .firstWhereOrNull((element) => element.book_id == bookID);
     }
 
-    while (readLineString != "^E" && readLineString != "^C" && book != null) { // if he doesn't enter E or C, print the statement
+    while (readLineString != "^E" && readLineString != "^C" && book != null) {
+      // if he doesn't enter E or C, print the statement
       print("The Book you choose is :");
       print(
           '|--ID--|---------Book Title---------|----------Author----------|--Price--|-Quantity-|');
@@ -103,21 +117,26 @@ edit() { // create a function to edit an element in the librery
       print("2 - Author");
       print("3 - Price");
       print("4 - Quantity");
-      readLineString = stdin.readLineSync(); // To read the input and save it in "readLineString"
+      readLineString = stdin
+          .readLineSync(); // To read the input and save it in "readLineString"
       if (readLineString != null) {
-        readLineString = readLineString.trim(); 
+        readLineString = readLineString.trim();
       }
       String? switchReadLineString;
-      switch (readLineString) {  // readLineString يسوي سويتش على القيمه اللي دخلها المستخدم وحفظناها في
+      switch (readLineString) {
+        // readLineString يسوي سويتش على القيمه اللي دخلها المستخدم وحفظناها في
         case "1":
           while (switchReadLineString == null || switchReadLineString.isEmpty) {
-            stdout.write("Enter a valid New Title (${book.book_title}) : "); // راح يوقف الكود الى ان المستخدم يدخل الاسم 
-            switchReadLineString = stdin.readLineSync(); //switchReadLineString يحط اسم الكتاب الجديد داخل 
+            stdout.write(
+                "Enter a valid New Title (${book.book_title}) : "); // راح يوقف الكود الى ان المستخدم يدخل الاسم
+            switchReadLineString = stdin
+                .readLineSync(); //switchReadLineString يحط اسم الكتاب الجديد داخل
             if (switchReadLineString != null) {
               switchReadLineString = switchReadLineString.trim();
             }
           }
-          book.book_title = switchReadLineString; // book title يدخل اسم الكتاب الجديد في
+          book.book_title =
+              switchReadLineString; // book title يدخل اسم الكتاب الجديد في
           break;
         case "2":
           while (switchReadLineString == null || switchReadLineString.isEmpty) {
@@ -136,7 +155,8 @@ edit() { // create a function to edit an element in the librery
             switchReadLineString = stdin.readLineSync();
             if (switchReadLineString != null) {
               switchReadLineString = switchReadLineString.trim();
-              price = double.tryParse(switchReadLineString); // convert the string input to double 
+              price = double.tryParse(
+                  switchReadLineString); // convert the string input to double
             }
           }
           book.price = price;
@@ -148,7 +168,8 @@ edit() { // create a function to edit an element in the librery
             switchReadLineString = stdin.readLineSync();
             if (switchReadLineString != null) {
               switchReadLineString = switchReadLineString.trim();
-              quantity = int.tryParse(switchReadLineString); //convert the string input to int 
+              quantity = int.tryParse(
+                  switchReadLineString); //convert the string input to int
             }
           }
           book.quantity = quantity;
@@ -165,16 +186,19 @@ delete() {
   int? bookID;
   Book? book;
   do {
-    viewAllBooks(); // at first we will show all books 
-    print("Enter a valid Book ID to Delete or [^E] to Exit : "); // choose the book by ID or Exit from the program
-    readLineString = stdin.readLineSync(); // save the enter value in readLineString
+    viewAllBooks(); // at first we will show all books
+    print(
+        "Enter a valid Book ID to Delete or [^E] to Exit : "); // choose the book by ID or Exit from the program
+    readLineString =
+        stdin.readLineSync(); // save the enter value in readLineString
     if (readLineString != null) {
       readLineString = readLineString.trim();
       bookID = int.tryParse(readLineString);
     }
     if (bookID != null) {
-      book = BookList.books
-          .firstWhereOrNull((element) => element.book_id == bookID); // method that search of element by the index
+      book = BookList.books.firstWhereOrNull((element) =>
+          element.book_id ==
+          bookID); // method that search of element by the index
     }
     if (book != null) {
       print("The Book you choose is :");
@@ -201,24 +225,28 @@ search() {
   String? readLineString;
   int? bookID;
   List<Book> searchResult = [];
-  while (readLineString != "^E") { // while he isn't enter E
+  while (readLineString != "^E") {
+    // while he isn't enter E
     print(
         "Enter a valid number (1-4) from the following to search by or [^E] to Exit : ");
     print("1 - Book ID");
     print("2 - Title");
     print("3 - Author");
     print("4 - All");
-    readLineString = stdin.readLineSync(); // save the input value in readLineString
+    readLineString =
+        stdin.readLineSync(); // save the input value in readLineString
     if (readLineString != null) {
       readLineString = readLineString.trim();
     }
     String? switchReadLineString;
     switch (readLineString) {
       case "1":
-        while (switchReadLineString != "^E" && switchReadLineString != "^C") { //  while he isn't enter E or C
+        while (switchReadLineString != "^E" && switchReadLineString != "^C") {
+          //  while he isn't enter E or C
           print(
               "Enter a Book ID to search for, [^C] to Choose another Category or [^E] to Exit : ");
-          switchReadLineString = stdin.readLineSync(); //save the input value in switchReadLineString
+          switchReadLineString = stdin
+              .readLineSync(); //save the input value in switchReadLineString
           if (switchReadLineString != null) {
             switchReadLineString = switchReadLineString.trim();
           }
@@ -226,18 +254,19 @@ search() {
             readLineString = switchReadLineString;
           }
           if (switchReadLineString != null) {
-            bookID = int.tryParse(switchReadLineString); // convert the string input to int and save it in bookID
+            bookID = int.tryParse(
+                switchReadLineString); // convert the string input to int and save it in bookID
           }
           if (bookID != null) {
             searchResult = BookList.books
                 .where((element) => element.book_id == bookID)
-                .toList(); // to convert it to list   
+                .toList(); // to convert it to list
             print("Search Result are : ${searchResult.length}");
             print(
                 '|--ID--|---------Book Title---------|----------Author----------|--Price--|-Quantity-|');
             if (searchResult.isNotEmpty) {
               for (var element in searchResult) {
-                element.view(); // view the book 
+                element.view(); // view the book
               }
             } else {
               print("No Books Found".padLeft(45));
@@ -245,7 +274,7 @@ search() {
           }
         }
         break;
-      case "2": // same way to search a book but by title 
+      case "2": // same way to search a book but by title
         while (switchReadLineString != "^E" && switchReadLineString != "^C") {
           print(
               "Enter a Book Title to search for, [^C] to Choose another Category or [^E] to Exit : ");
@@ -276,7 +305,7 @@ search() {
           }
         }
         break;
-      case "3": // same way to search a book but by author 
+      case "3": // same way to search a book but by author
         while (switchReadLineString != "^E" && switchReadLineString != "^C") {
           print(
               "Enter a Book Author to search for, [^C] to Choose another Category or [^E] to Exit : ");
@@ -386,11 +415,20 @@ sell() {
           break;
         } else {
           var reqQuantity = 1;
+          SoldBook? duplicate;
+          for (var element in soldBookList) {
+            if (element.id == book.book_id) {
+              reqQuantity += element.quantity;
+              duplicate = element;
+              originalBookList.removeWhere((key, value) => value == book);
+            }
+          }
+          soldBookList.remove(duplicate);
           if (bookInfo.length > 1) {
-            if (bookInfo[1] != "") {
+            if (bookInfo[1].isNotEmpty) {
               var parsedQuantity = int.tryParse(bookInfo[1].trim());
-              if (parsedQuantity != null) {
-                reqQuantity = parsedQuantity;
+              if (parsedQuantity != null && bookInfo.length == 2) {
+                reqQuantity = (reqQuantity - 1) + parsedQuantity;
               } else {
                 errorCode = 3;
                 break;
@@ -403,6 +441,7 @@ sell() {
           }
           if (errorCode == 0) {
             SoldBook soldBook = SoldBook(
+                id: book.book_id,
                 title: book.book_title,
                 price: book.price,
                 quantity: reqQuantity);
