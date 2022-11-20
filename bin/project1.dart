@@ -116,24 +116,43 @@ class Info extends LibraryBook {
   @override
   Edit() { 
     print("==========Edit Menu==========");
+    print("What would you like to edit? please choose one from the list:");
     print("Enter the ID of the book to edit it:");
-    int editInput = int.parse(stdin.readLineSync()!);
-    print("Enter the new Title:");
-    String? newTitle = stdin.readLineSync();
-    print("Enter the new Author:");
-    String? newAuthor = stdin.readLineSync();
-    print("Enter the new Price:");
-    double? newPrice = double.parse(stdin.readLineSync()!);
-    print("Enter the new Quantity:");
-    int? newQuantity = int.parse(stdin.readLineSync()!);
-    myListBook[editInput - 1] = BooksRequirments(
-        book_id: editInput,
-        book_title: newTitle,
-        author: newAuthor,
-        price: newPrice,
-        quantity: newQuantity);
-    print(
-        "You've editted the book successfully, view information to make sure!.");
+    int? editMenu = int.parse(stdin.readLineSync()!);
+    print("1.Title \n2.Author \n3.Price \n4.Quantity \n5.Exit");
+    int? editMenu2 = int.parse(stdin.readLineSync()!);
+    switch(editMenu2){
+    case 1:{
+      if(editMenu2 == 1){
+      print("Enter the new Title:");
+      String? newTitle = stdin.readLineSync(); 
+      myListBook[editMenu - 1].book_title=newTitle;
+      print(myListBook[editMenu - 1].book_title);}
+    break; }
+    case 2:{ if(editMenu2 == 2){
+      print("Enter the new Author:");
+      String? newAuthor = stdin.readLineSync(); 
+      myListBook[editMenu - 1].author=newAuthor;
+      print(myListBook[editMenu - 1].author);}
+    break;}
+    case 3:{ if(editMenu2 == 3){
+      print("Enter the new Price:");
+      int? newPrice = int.parse(stdin.readLineSync()!); 
+      myListBook[editMenu - 1].price=newPrice;
+      print(myListBook[editMenu - 1].price);}
+    break;}
+    case 4:{ if(editMenu2 == 4){
+      print("Enter the new Quantity:");
+      int? newQuantity = int.parse(stdin.readLineSync()!); 
+      myListBook[editMenu - 1].quantity=newQuantity;
+      print(myListBook[editMenu - 1].quantity);}
+    break;}
+    case 5:{ exit(5) ;}
+    default:{print("should be a number between 1-5");
+    break;}
+    } 
+    print("You've editted the book successfully, view information to make sure!.");
+      
   }
 
   Add() {
