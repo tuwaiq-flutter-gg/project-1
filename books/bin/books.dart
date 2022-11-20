@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:books/book.dart';
 import 'package:books/book_list.dart';
+import 'package:books/functions.dart';
 
 void main(List<String> arguments) {
   Book b1 = Book(
@@ -59,22 +60,22 @@ void main(List<String> arguments) {
     readLine = stdin.readLineSync();
     switch (readLine) {
       case "1":
-        BookList.viewAllBooks();
+        viewAllBooks();
         break;
       case "2":
-        BookList.sell();
+        sell();
         break;
       case "3":
-        BookList.add();
+        add();
         break;
       case "4":
-        BookList.edit();
+        edit();
         break;
       case "5":
-        BookList.delete();
+        delete();
         break;
       case "6":
-        BookList.search();
+        search();
         break;
       default:
         break;
